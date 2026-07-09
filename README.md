@@ -1,4 +1,4 @@
-<img width="910" height="510" alt="image" src="https://github.com/user-attachments/assets/33384e37-3c72-4a0a-ba33-2cc40e34c183" /># 🚀 KanbanFlow
+# 🚀 KanbanFlow
 
 KanbanFlow adalah aplikasi manajemen tugas berbasis web (Full-Stack Web Application) yang membantu pengguna mengelola pekerjaan menggunakan metode Kanban. Pengguna dapat membuat, mengubah, menghapus, dan mengelompokkan tugas berdasarkan status sehingga aktivitas menjadi lebih terorganisir.
 
