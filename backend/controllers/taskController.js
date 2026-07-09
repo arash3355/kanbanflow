@@ -1,20 +1,32 @@
 const pool = require("../config/db");
 
 const getTasks = async (req, res) => {
+    const { userId } = req.query;
+
+    if (!userId) {
+
+        return res.status(400).json({
+
+            message: "User ID wajib dikirim"
+
+        });
+
+    }
+
     try {
         const result = await pool.query(`
             SELECT
-                id,
-                title,
-                description,
-                priority,
-                due_date AS "dueDate",
-                status,
-                user_id AS "userId",
-                created_at AS "createdAt"
-            FROM tasks
-            ORDER BY id ASC
-        `);
+    id,
+    title,
+    description,
+    priority,
+    due_date AS "dueDate",
+    status,
+    user_id AS "userId",
+    created_at AS "createdAt"
+FROM tasks
+WHERE user_id = $1
+ORDER BY id ASC`, [userId]);
 
         res.status(200).json(result.rows);
 
@@ -42,6 +54,12 @@ const createTask = async (req, res) => {
     if (!title) {
         return res.status(400).json({
             message: "Title wajib diisi",
+        });
+    }
+
+    if (!userId) {
+        return res.status(400).json({
+            message: "User ID wajib dikirim",
         });
     }
 
@@ -77,7 +95,7 @@ RETURNING
                 priority,
                 dueDate,
                 status,
-                userId ?? 1,
+                userId,
             ]
         );
 
@@ -105,20 +123,42 @@ const updateTask = async (req, res) => {
         priority,
         dueDate,
         status,
+        userId,
     } = req.body;
+
+    if (!userId) {
+
+        return res.status(400).json({
+
+            message: "User ID wajib dikirim"
+
+        });
+
+    }
 
     try {
 
         const result = await pool.query(
             `
             UPDATE tasks
+
             SET
-                title = $1,
-                description = $2,
-                priority = $3,
-                due_date = $4,
-                status = $5
-            WHERE id = $6
+
+            title=$1,
+
+            description=$2,
+
+            priority=$3,
+
+            due_date=$4,
+
+            status=$5
+
+            WHERE
+
+            id=$6
+
+            AND user_id=$7
 
             RETURNING
                 id,
@@ -137,6 +177,7 @@ const updateTask = async (req, res) => {
                 dueDate,
                 status,
                 id,
+                userId
             ]
         );
 
@@ -166,24 +207,43 @@ const deleteTask = async (req, res) => {
 
     const { id } = req.params;
 
+    const { userId } = req.body;
+
+    if (!userId) {
+
+        return res.status(400).json({
+
+            message: "User ID wajib dikirim"
+
+        });
+
+    }
+
     try {
 
         const result = await pool.query(
             `
             DELETE FROM tasks
-            WHERE id = $1
 
-            RETURNING
-                id,
-                title,
-                description,
-                priority,
-                due_date AS "dueDate",
-                status,
-                user_id AS "userId",
-                created_at AS "createdAt"
+WHERE
+
+id = $1
+
+AND
+
+user_id = $2
+
+RETURNING
+    id,
+    title,
+    description,
+    priority,
+    due_date AS "dueDate",
+    status,
+    user_id AS "userId",
+    created_at AS "createdAt"
             `,
-            [id]
+            [id, userId]
         );
 
         if (result.rows.length === 0) {

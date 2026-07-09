@@ -1,32 +1,51 @@
 const API_URL = "http://localhost:3001/tasks";
 
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem("user"));
+}
+
+// ==============================
+// GET TASKS
+// ==============================
+
 export async function getTasks() {
 
-    const response = await fetch(API_URL);
+    const user = getCurrentUser();
+
+    const response = await fetch(
+        `${API_URL}?userId=${user.id}`
+    );
 
     if (!response.ok) {
-
         throw new Error("Failed to fetch tasks");
-
     }
 
     return response.json();
-
 }
 
+// ==============================
+// CREATE TASK
+// ==============================
+
 export async function createTask(task) {
+
+    const user = getCurrentUser();
 
     const response = await fetch(API_URL, {
 
         method: "POST",
 
         headers: {
-
             "Content-Type": "application/json"
-
         },
 
-        body: JSON.stringify(task)
+        body: JSON.stringify({
+
+            ...task,
+
+            userId: user.id
+
+        })
 
     });
 
@@ -40,26 +59,33 @@ export async function createTask(task) {
 
 }
 
+// ==============================
+// UPDATE TASK
+// ==============================
+
 export async function updateTask(task) {
 
+    const user = getCurrentUser();
+
     const response = await fetch(
-
-        `http://localhost:3001/tasks/${task.id}`,
-
+        `${API_URL}/${task.id}`,
         {
 
             method: "PUT",
 
             headers: {
-
                 "Content-Type": "application/json"
-
             },
 
-            body: JSON.stringify(task)
+            body: JSON.stringify({
+
+                ...task,
+
+                userId: user.id
+
+            })
 
         }
-
     );
 
     if (!response.ok) {
@@ -72,14 +98,34 @@ export async function updateTask(task) {
 
 }
 
+// ==============================
+// DELETE TASK
+// ==============================
+
 export async function deleteTask(id) {
+
+    const user = getCurrentUser();
 
     const response = await fetch(
 
-        `http://localhost:3001/tasks/${id}`,
+        `${API_URL}/${id}`,
 
         {
-            method: "DELETE"
+
+            method: "DELETE",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                userId: user.id
+
+            })
+
         }
 
     );
