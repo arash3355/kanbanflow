@@ -1,4 +1,4 @@
-# 🚀 KanbanFlow
+<img width="910" height="510" alt="image" src="https://github.com/user-attachments/assets/33384e37-3c72-4a0a-ba33-2cc40e34c183" /># 🚀 KanbanFlow
 
 KanbanFlow adalah aplikasi manajemen tugas berbasis web (Full-Stack Web Application) yang membantu pengguna mengelola pekerjaan menggunakan metode Kanban. Pengguna dapat membuat, mengubah, menghapus, dan mengelompokkan tugas berdasarkan status sehingga aktivitas menjadi lebih terorganisir.
 
@@ -162,26 +162,28 @@ PORT=3001
 # 📷 Tampilan Aplikasi
 
 ## Landing Page
+<img width="910" height="510" alt="image" src="https://github.com/user-attachments/assets/4197b310-5718-4406-a5ec-5b91d422b385" />
 
-*(Tambahkan screenshot di sini)*
 
 ## Login
 
-*(Tambahkan screenshot di sini)*
+<img width="919" height="506" alt="image" src="https://github.com/user-attachments/assets/92e7b40c-95b7-4083-901a-5b15cbf8389b" />
+
 
 ## Dashboard
 
-*(Tambahkan screenshot di sini)*
+<img width="911" height="509" alt="image" src="https://github.com/user-attachments/assets/590cf8cc-847c-49bb-9d15-85af71b0be3b" />
+
 
 ---
 
 # 👨‍💻 Developer
 
-Nama : **Rash**
+Nama : **Abdul Rahman Shalehudin**
 
 Project Mata Kuliah Pemrograman Web II
 
-Universitas ...
+Universitas Teknologi Bandung
 
 Tahun 2026
 
