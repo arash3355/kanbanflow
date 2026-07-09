@@ -172,7 +172,8 @@ PORT=3001
 
 ## Dashboard
 
-<img width="911" height="509" alt="image" src="https://github.com/user-attachments/assets/590cf8cc-847c-49bb-9d15-85af71b0be3b" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8d949a01-642e-46d6-9b99-19203bad9ef8" />
+
 
 
 ---
